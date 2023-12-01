@@ -1,5 +1,4 @@
-﻿//GameBoard.cs file:
-
+﻿
 public class GameBoard
 {
     public int width;
@@ -13,6 +12,7 @@ public class GameBoard
         this.height = height;
         grid = new char[height, width];
         units = new List<Unit>();
+
         InitializeGrid();
     }
 

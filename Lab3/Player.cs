@@ -1,5 +1,4 @@
-﻿//Player.cs file:
-
+﻿
 public class Player
 {
     public string Name { get; set; }
@@ -66,6 +65,53 @@ public class Player
         {
             Console.WriteLine("Неверное имя атакующего.");
             Console.ReadLine();
+        }
+    }
+    public void UseActiveAbility()
+    {
+        Console.WriteLine("Выберите юнита для активации способности:");
+
+        int unitChoice = ReadUserChoice(1, Units.Count); // Получаем выбор пользователя
+        Unit selectedUnit = Units[unitChoice - 1]; // Получение выбранного юнита
+        Ability selectedAbility = selectedUnit.Abilities[0];
+        // Активировать способность
+        if (selectedAbility.IsActive)
+        {
+            selectedUnit.GetActiveAbility(selectedAbility, selectedUnit);
+        }
+        else
+        {
+            Console.WriteLine("Выбранная способность не является активной.");
+        }
+    }
+
+    public void SetPassiveAbility(Unit selectedUnit)
+    {
+        // Показать доступные активные способности выбранного юнита
+        selectedUnit.DisplayAbilities();
+        Ability selectedAbility = selectedUnit.Abilities[1];
+        if (selectedAbility.IsActive)
+        {
+            selectedUnit.GetActiveAbility(selectedAbility, selectedUnit);
+        }
+        else
+        {
+            Console.WriteLine("Произошла ошибка. Неизвестная способность");
+        }
+    }
+
+    private int ReadUserChoice(int minValue, int maxValue)
+    {
+        while (true)
+        {
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice >= minValue && choice <= maxValue)
+            {
+                return choice;
+            }
+            else
+            {
+                Console.WriteLine($"Неверный ввод. Пожалуйста, введите число между {minValue} и {maxValue}.");
+            }
         }
     }
 }
