@@ -1,5 +1,4 @@
-﻿//GameBoard.cs file:
-
+﻿
 public class GameBoard
 {
     public int width;
@@ -13,6 +12,7 @@ public class GameBoard
         this.height = height;
         grid = new char[height, width];
         units = new List<Unit>();
+
         InitializeGrid();
     }
 
@@ -54,6 +54,7 @@ public class GameBoard
     public void SetUnit(Player player, string unitName, int x, int y, int health, int attack, int endurance, string unitType, char symbol, List<Ability> abilities)
     {
         Unit unit = new(player, unitName, x, y, health, attack, endurance, unitType, symbol, new List<Ability>(abilities));
+        player.SetPassiveAbility(unit);
         player.Units.Add(unit);
         units.Add(unit);
         grid[y, x] = symbol;

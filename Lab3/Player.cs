@@ -1,5 +1,4 @@
-﻿//Player.cs file:
-
+﻿
 public class Player
 {
     public string Name { get; set; }
@@ -66,6 +65,35 @@ public class Player
         {
             Console.WriteLine("Неверное имя атакующего.");
             Console.ReadLine();
+        }
+    }
+    public void UseActiveAbility()
+    {
+        Console.WriteLine("Выберите юнита для активации способности:");
+        string name = Console.ReadLine();
+        Unit selectedUnit = GetUnitByName(name); // Получение выбранного юнита
+        Ability selectedAbility = selectedUnit.Abilities[0];
+        // Активировать способность
+        if (selectedAbility.IsActive)
+        {
+            selectedUnit.GetActiveAbility(selectedAbility, selectedUnit);
+        }
+        else
+        {
+            Console.WriteLine("Выбранная способность не является активной.");
+        }
+    }
+
+    public void SetPassiveAbility(Unit selectedUnit)
+    {
+        Ability selectedAbility = selectedUnit.Abilities[1];
+        if (selectedAbility.IsActive)
+        {
+            selectedUnit.GetPassiveAbility(selectedAbility, selectedUnit);
+        }
+        else
+        {
+            Console.WriteLine("Произошла ошибка. Неизвестная способность");
         }
     }
 }

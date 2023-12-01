@@ -19,7 +19,9 @@ namespace Lab3.Tests
             var player = new Player("Игрок");
             string unitName = "Юнит1";
             char unitSymbol = 'W';
-            gameBoard.SetUnit(player, unitName, 0, 0, 100, 10, 5, "Воин", unitSymbol, new List<Ability>());
+            gameBoard.SetUnit(player, unitName, 0, 0, 100, 10, 5, "Воин", unitSymbol, new List<Ability>{
+                            new Ability("|Рывок|", "+2 к выносливости", true, 3),
+                            new Ability("|Ярость|", "+1 к выносливости", false, 3)});
 
             var addedUnit = gameBoard.units.FirstOrDefault(u => u.Name == unitName);
             Assert.IsNotNull(addedUnit);

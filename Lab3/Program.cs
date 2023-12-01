@@ -1,6 +1,4 @@
-﻿//Program.cs file:
-using System;
-using System.IO;
+﻿
 using Newtonsoft.Json;
 
 class Program
@@ -62,6 +60,7 @@ class Program
 
     static void RunGameLoop(GameBoard gameBoard, Player player1, Player player2, bool IsSetupPhase, bool player1Turn)
     {
+        
         while (true)
         {
             Console.Clear();
@@ -82,10 +81,11 @@ class Program
                 Console.WriteLine("Выберите действие:");
                 Console.WriteLine("1 - Ходить");
                 Console.WriteLine("2 - Атаковать");
-                Console.WriteLine("3 - Сохранить");
-                Console.WriteLine("4 - Выход");
+                Console.WriteLine("3 - Способность\n");
+                Console.WriteLine("4 - Сохранить");
+                Console.WriteLine("5 - Выход");
 
-                int actionChoice = GetUserChoice(1, 4);
+                int actionChoice = GetUserChoice(1, 5);
 
                 switch (actionChoice)
                 {
@@ -96,9 +96,12 @@ class Program
                         currentPlayer.AttackUnit(gameBoard);
                         break;
                     case 3:
-                        SaveGame(gameBoard, player1, player2, IsSetupPhase, player1Turn);
+                        currentPlayer.UseActiveAbility();
                         break;
                     case 4:
+                        SaveGame(gameBoard, player1, player2, IsSetupPhase, player1Turn);
+                        break;
+                    case 5:
                         Environment.Exit(0);
                         break;
                     default:
@@ -123,7 +126,7 @@ class Program
         Console.Clear();
         gameBoard.Display();
 
-        int endOfSetupPhase = 1;
+        int endOfSetupPhase = 3;
         Console.WriteLine($"{player.Name}, фаза расстановки. У вас есть {endOfSetupPhase} ходов, чтобы расставить свои юниты.");
 
         for (int turn = 1; turn <= endOfSetupPhase; turn++)
@@ -147,7 +150,7 @@ class Program
             if (player.Name == "Игрок1")
             {
                 Console.WriteLine("Введите y координату (0, 1 или 2): ");
-                y = GetUserChoice(1, 2);
+                y = GetUserChoice(0, 2);
 
                 if (!(y >= 0 && y <= 2))
                 {
@@ -175,6 +178,7 @@ class Program
             string unitName = Console.ReadLine();
             Console.WriteLine("Введите символ для обозначения юнита: ");
             char symbol = char.Parse(Console.ReadLine());
+            Unit unit = player.GetUnitByName(unitName);
 
             if (gameBoard.IsValidPosition(x, y) && gameBoard.IsCellEmpty(x, y))
             {
@@ -182,33 +186,33 @@ class Program
                 {
                     case 1:
                         gameBoard.SetUnit(player, unitName, x, y, 120, 15, 3, "Воин", symbol, new List<Ability>{
-                            new Ability("|Разящий удар|", "+5 к атаке на 3 хода", true),
-                            new Ability("|Ладные доспехи|", "10% шанс поглатить 30% урона", false)});
+                            new Ability("|Разящий удар|", "+5 к атаке", true, 1),
+                            new Ability("|Ладные доспехи|", "+1 к атаке", false, 1)});
                         break;
                     case 2:
                         gameBoard.SetUnit(player, unitName, x, y, 80, 12, 2, "Лучник", symbol, new List<Ability>{
-                            new Ability("|Острые стрелы|", "+2 к атаке на 5 ходов", true),
-                            new Ability("|Ретирование|", "+1 к выносливости,\nесли уровень здоровья меньше 25%", false)});
+                            new Ability("|Острые стрелы|", "+5 к атаке", true, 1),
+                            new Ability("|Ретирование|", "+1 к выносливости", false, 3)});
                         break;
                     case 3:
                         gameBoard.SetUnit(player, unitName, x, y, 60, 20, 2, "Маг", symbol, new List<Ability>{
-                            new Ability("|Огненный шар|", "Наносит на 25% больше урона,\n чем обычная атака", true),
-                            new Ability("|Магический щит|", "25% шанс поглатить 50% урона", false)});
+                            new Ability("|Огненный шар|", "+5 к атаке", true, 1),
+                            new Ability("|Восстановление|", "Восстанавливает 5% здоровья за ход", false, 2)});
                         break;
                     case 4:
                         gameBoard.SetUnit(player, unitName, x, y, 150, 10, 2, "Паладин", symbol, new List<Ability>{
-                            new Ability("|Ни шагу назад|", "-2 к выносливости, +50 к здоровью", true),
-                            new Ability("|Щит паладина|", "Если уровень здоровья меньше 25%, урон x2", false)});
+                            new Ability("|Ни шагу назад|", "-2 к выносливости, +50 к здоровью", true, 4),
+                            new Ability("|Щит паладина|", "+1 к выносливости", false, 3)});
                         break;
                     case 5:
                         gameBoard.SetUnit(player, unitName, x, y, 80, 25, 2, "Берсерк", symbol, new List<Ability>{
-                            new Ability("|Рывок|", "+2 к выносливости на один ход", true),
-                            new Ability("|Ярость|", "10% шанс нанести x2 урон", false)});
+                            new Ability("|Рывок|", "+2 к выносливости", true, 3),
+                            new Ability("|Ярость|", "+1 к выносливости", false, 3)});
                         break;
                     case 6:
                         gameBoard.SetUnit(player, unitName, x, y, 80, 8, 3, "Целитель", symbol, new List<Ability>{
-                            new Ability("|Лечение|", "Восстанавливает 50% здоровья,\nвыбранному юниту в радиусе 1 клетки", true),
-                            new Ability("|Аура целителя|", "Каждый ход восстанавливает\n2 единицы здоровья союзным юнитам", false)});
+                            new Ability("|Лечение|", "Восстанавливает 50% своего здоровья", true, 2),
+                            new Ability("|Аура целителя|", "Восстанавливает 5% здоровья за ход", false, 2)});
                         break;
                     default:
                         Console.WriteLine("Неверный ввод.");
@@ -258,12 +262,12 @@ class Program
         string json = JsonConvert.SerializeObject(gameState, settings);
 
         // Сохранение в текущей директории
-        File.WriteAllText("gamestate.json", json);
+        File.WriteAllText("savefile.json", json);
     }
 
     static GameState LoadGame()
     {
-        string path = "gamestate.json";
+        string path = "savefile.json";
 
         if (File.Exists(path))
         {
