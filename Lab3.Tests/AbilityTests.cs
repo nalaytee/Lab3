@@ -7,9 +7,10 @@ namespace Lab3.Tests
         [TestMethod]
         public void Constructor_SetsPropertiesCorrectly()
         {
-            var ability = new Ability("Fireball", "Deals 25% more damage", true);
+            string name = "Огенный шар"; 
+            var ability = new Ability(name, "+5 к урону", true, 1);
 
-            Assert.AreEqual("Fireball", ability.Name);
+            Assert.AreEqual(name, ability.Name);
             Assert.IsTrue(ability.IsActive);
         }
     }
