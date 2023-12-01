@@ -1,18 +1,67 @@
 ﻿//Program.cs file:
+using System;
+using System.IO;
+using Newtonsoft.Json;
 
 class Program
 {
     static void Main()
     {
-        GameBoard gameBoard = new(10, 10);
+        Console.WriteLine("Добро пожаловать в игру!");
+        Console.WriteLine("1) Начать игру");
+        Console.WriteLine("2) Загрузить игру");
+        Console.WriteLine("3) Выход");
 
-        Player board = new("Доска");
-        Player player1 = new("Игрок1");
-        Player player2 = new("Игрок2");
+        int choice = GetUserChoice(1, 3);
 
-        gameBoard.SetObstacles(board);
-        bool IsSetupPhase = true;
+        switch (choice)
+        {
+            case 1:
+                StartNewGame();
+                break;
+            case 2:
+                LoadExistingGame();
+                break;
+            case 3:
+                Environment.Exit(0);
+                break;
+        }
 
+
+        static void StartNewGame()
+        {
+            GameBoard gameBoard = new(10, 10);
+
+            Player board = new("Доска");
+            Player player1 = new("Игрок1");
+            Player player2 = new("Игрок2");
+            gameBoard.SetObstacles(board);
+
+
+            bool IsSetupPhase = true;
+            bool player1Turn = true;
+
+            RunGameLoop(gameBoard, player1, player2, IsSetupPhase, player1Turn);
+        }
+
+        static void LoadExistingGame()
+        {
+            GameState gameState = LoadGame();
+            if (gameState != null)
+            {
+                Console.WriteLine("Загружаем сохраненную игру...");
+                RunGameLoop(gameState.GameBoard, gameState.Player1, gameState.Player2, gameState.IsSetupPhase, gameState.Player1Turn);
+            }
+            else
+            {
+                Console.WriteLine("Сохраненная игра не найдена. Запуск новой игры.");
+                StartNewGame();
+            }
+        }
+    }
+
+    static void RunGameLoop(GameBoard gameBoard, Player player1, Player player2, bool IsSetupPhase, bool player1Turn)
+    {
         while (true)
         {
             Console.Clear();
@@ -27,15 +76,16 @@ class Program
             }
             else
             {
-                // Фаза обычной игры
-                bool player1Turn = true;
-
                 Console.WriteLine($"Ходит {(player1Turn ? player1.Name : player2.Name)}.");
                 Player currentPlayer = player1Turn ? player1 : player2;
                 gameBoard.DisplayAllUnits();
-                Console.WriteLine("Выберите действие: 1 - Ходить, 2 - Атаковать, 3 - Выход");
+                Console.WriteLine("Выберите действие:");
+                Console.WriteLine("1 - Ходить");
+                Console.WriteLine("2 - Атаковать");
+                Console.WriteLine("3 - Сохранить");
+                Console.WriteLine("4 - Выход");
 
-                int actionChoice = GetUserChoice(1, 3);
+                int actionChoice = GetUserChoice(1, 4);
 
                 switch (actionChoice)
                 {
@@ -46,6 +96,9 @@ class Program
                         currentPlayer.AttackUnit(gameBoard);
                         break;
                     case 3:
+                        SaveGame(gameBoard, player1, player2, IsSetupPhase, player1Turn);
+                        break;
+                    case 4:
                         Environment.Exit(0);
                         break;
                     default:
@@ -76,7 +129,14 @@ class Program
         for (int turn = 1; turn <= endOfSetupPhase; turn++)
         {
             Console.WriteLine($"{turn} - {player.Name}, расставьте свои юниты:");
-            Console.WriteLine("Выберите: 1 - Воин, 2 - Лучник, 3 - Маг, 4 - Паладин, 5 - Берсерк, 6 - Целитель");
+            Console.WriteLine("Выберите:");
+            Console.WriteLine("1 - Воин");
+            Console.WriteLine("2 - Лучник");
+            Console.WriteLine("3 - Маг");
+            Console.WriteLine("4 - Паладин");
+            Console.WriteLine("5 - Берсерк");
+            Console.WriteLine("6 - Целитель");
+
             int unitTypeChoice = GetUserChoice(1, 6);
 
             Console.WriteLine("Введите x координату: ");
@@ -86,7 +146,7 @@ class Program
             // Проверка на соответствие правилам расстановки
             if (player.Name == "Игрок1")
             {
-                Console.WriteLine("Введите y координату (0, 1, or 2): ");
+                Console.WriteLine("Введите y координату (0, 1 или 2): ");
                 y = GetUserChoice(1, 2);
 
                 if (!(y >= 0 && y <= 2))
@@ -99,7 +159,7 @@ class Program
             }
             else // Player2
             {
-                Console.WriteLine("Введите y координату (7, 8, or 9): ");
+                Console.WriteLine("Введите y координату (7, 8 или 9): ");
                 y = GetUserChoice(7, 9);
 
                 if (!(y >= 7 && y <= 9))
@@ -185,5 +245,46 @@ class Program
     static bool IsGameFinished(Player player1, Player player2)
     {
         return player1.Units.Count == 0 || player2.Units.Count == 0;
+    }
+
+    static void SaveGame(GameBoard gameBoard, Player player1, Player player2, bool IsSetupPhase, bool player1Turn)
+    {
+        var gameState = new { GameBoard = gameBoard, Player1 = player1, Player2 = player2, IsSetupPhase, player1Turn };
+        var settings = new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        };
+        string json = JsonConvert.SerializeObject(gameState, settings);
+
+        // Сохранение в текущей директории
+        File.WriteAllText("gamestate.json", json);
+    }
+
+    static GameState LoadGame()
+    {
+        string path = "gamestate.json";
+
+        if (File.Exists(path))
+        {
+            try
+            {
+                string json = File.ReadAllText(path);
+                Console.WriteLine("Пытаемся загрузить следующие данные:");
+                Console.WriteLine(json); // Выводим содержимое файла
+                var settings = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                };
+                var gameState = JsonConvert.DeserializeObject<GameState>(json, settings);
+                return gameState;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при загрузке файла: {ex.Message}");
+            }
+        }
+        return null;
     }
 }
