@@ -2,9 +2,9 @@
 
 public class GameBoard
 {
-    private readonly int width;
-    private readonly int height;
-    private readonly char[,] grid;
+    public readonly int width;
+    public readonly int height;
+    public readonly char[,] grid;
     public List<Unit> units = new();
 
     public GameBoard(int width, int height)

@@ -50,7 +50,6 @@ public class Player
             Console.WriteLine("Выберите цель атаки: ");
             string targetUnitName = Console.ReadLine();
 
-            // Perform a case-insensitive comparison
             Unit targetUnit = gameBoard.units.FirstOrDefault(unit => unit.Name.Equals(targetUnitName, StringComparison.OrdinalIgnoreCase));
 
             if (targetUnit != null)
