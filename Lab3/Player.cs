@@ -87,7 +87,7 @@ public class Player
     public void SetPassiveAbility(Unit selectedUnit)
     {
         Ability selectedAbility = selectedUnit.Abilities[1];
-        if (selectedAbility.IsActive)
+        if (!selectedAbility.IsActive)
         {
             selectedUnit.GetPassiveAbility(selectedAbility, selectedUnit);
         }
