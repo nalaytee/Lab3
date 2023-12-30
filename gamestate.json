@@ -1,0 +1,598 @@
+{
+  "GameBoard": {
+    "width": 10,
+    "height": 10,
+    "grid": [
+      [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      [
+        ".",
+        ".",
+        ".",
+        ".",
+        "5",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      [
+        "#",
+        "#",
+        "#",
+        ".",
+        ".",
+        ".",
+        ".",
+        "#",
+        "#",
+        "#"
+      ],
+      [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "6",
+        ".",
+        ".",
+        "."
+      ],
+      [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ]
+    ],
+    "units": [
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 0,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 1,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 2,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 7,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 8,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 9,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 0,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 1,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 2,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 7,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 8,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 9,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 0,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 1,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 2,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 7,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 8,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 2,
+        "Y": 9,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 0,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 1,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 2,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 7,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 8,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "",
+        "X": 7,
+        "Y": 9,
+        "Health": 0,
+        "Attack": 0,
+        "Endurance": 0,
+        "UnitType": "Препядствие",
+        "Abilities": [],
+        "Symbol": "#",
+        "Owner": {
+          "Name": "Доска",
+          "Units": []
+        }
+      },
+      {
+        "Name": "5",
+        "X": 4,
+        "Y": 1,
+        "Health": 150,
+        "Attack": 10,
+        "Endurance": 2,
+        "UnitType": "Паладин",
+        "Abilities": [
+          {
+            "Name": "|Ни шагу назад|",
+            "Description": "-2 к выносливости, +50 к здоровью",
+            "IsActive": true
+          },
+          {
+            "Name": "|Щит паладина|",
+            "Description": "Если уровень здоровья меньше 25%, урон x2",
+            "IsActive": false
+          }
+        ],
+        "Symbol": "5",
+        "Owner": {
+          "Name": "Игрок1",
+          "Units": []
+        }
+      },
+      {
+        "Name": "6",
+        "X": 6,
+        "Y": 8,
+        "Health": 80,
+        "Attack": 8,
+        "Endurance": 3,
+        "UnitType": "Целитель",
+        "Abilities": [
+          {
+            "Name": "|Лечение|",
+            "Description": "Восстанавливает 50% здоровья,\nвыбранному юниту в радиусе 1 клетки",
+            "IsActive": true
+          },
+          {
+            "Name": "|Аура целителя|",
+            "Description": "Каждый ход восстанавливает\n2 единицы здоровья союзным юнитам",
+            "IsActive": false
+          }
+        ],
+        "Symbol": "6",
+        "Owner": {
+          "Name": "Игрок2",
+          "Units": []
+        }
+      }
+    ]
+  },
+  "Player1": {
+    "Name": "Игрок1",
+    "Units": [
+      {
+        "Name": "5",
+        "X": 4,
+        "Y": 1,
+        "Health": 150,
+        "Attack": 10,
+        "Endurance": 2,
+        "UnitType": "Паладин",
+        "Abilities": [
+          {
+            "Name": "|Ни шагу назад|",
+            "Description": "-2 к выносливости, +50 к здоровью",
+            "IsActive": true
+          },
+          {
+            "Name": "|Щит паладина|",
+            "Description": "Если уровень здоровья меньше 25%, урон x2",
+            "IsActive": false
+          }
+        ],
+        "Symbol": "5"
+      }
+    ]
+  },
+  "Player2": {
+    "Name": "Игрок2",
+    "Units": [
+      {
+        "Name": "6",
+        "X": 6,
+        "Y": 8,
+        "Health": 80,
+        "Attack": 8,
+        "Endurance": 3,
+        "UnitType": "Целитель",
+        "Abilities": [
+          {
+            "Name": "|Лечение|",
+            "Description": "Восстанавливает 50% здоровья,\nвыбранному юниту в радиусе 1 клетки",
+            "IsActive": true
+          },
+          {
+            "Name": "|Аура целителя|",
+            "Description": "Каждый ход восстанавливает\n2 единицы здоровья союзным юнитам",
+            "IsActive": false
+          }
+        ],
+        "Symbol": "6"
+      }
+    ]
+  },
+  "IsSetupPhase": false,
+  "player1Turn": true
+}
